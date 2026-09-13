@@ -1,12 +1,17 @@
-import type { Metadata } from "next";
-import Image from "next/image";
+import { Link } from "react-router";
+import type { Route } from "./+types/home";
 import { BondTypeCard } from "@/components/bond-type/BondTypeCard";
 
-export const metadata: Metadata = {
-  title: "Arjun Aditya",
-  description:
-    "Sustainable programmer and founder engineer who likes nature and designing.",
-};
+export function meta(_: Route.MetaArgs) {
+  return [
+    { title: "Arjun Aditya" },
+    {
+      name: "description",
+      content:
+        "Sustainable programmer and founder engineer who likes nature and designing.",
+    },
+  ];
+}
 
 const links = [
   { label: "Main Site", href: "https://arjunaditya.xyz" },
@@ -72,14 +77,14 @@ const projects = [
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-4xl px-6 py-16 md:grid md:grid-cols-[200px_1fr] md:gap-16">
+    <div className="mx-auto max-w-6xl px-6 py-16 md:grid md:grid-cols-[200px_1fr] md:gap-16">
       <aside className="mb-12 md:mb-0">
-        <Image
+        <img
           src="/img-2384.webp"
           alt="Arjun Aditya"
           width={600}
           height={800}
-          sizes="(min-width: 768px) 200px, 40vw"
+          fetchPriority="high"
           className="mb-4 aspect-[3/4] w-full max-w-[200px] object-cover"
         />
         <h1 className="text-base font-medium text-neutral-900">Arjun Aditya</h1>
@@ -87,6 +92,9 @@ export default function Home() {
           Reactional Programmer who likes to build things. For Living I run Gray Cup, selling tea, coffee and building white label products for B2B.
           </p>
         <nav className="mt-6 flex flex-col gap-1.5 text-sm">
+          <Link to="/blogs" className="text-neutral-500 hover:text-neutral-900">
+            Blog
+          </Link>
           {links.map((l) => (
             <a
               key={l.label}
@@ -133,12 +141,12 @@ I'm also a moderator at r/AskProgrammers (sort of chronically online on 4 reddit
           {projects.map((p) => (
             <li key={p.title} className="flex flex-col">
               <a href={p.href} target="_blank" rel="noopener" className="group">
-                <Image
+                <img
                   src={p.img}
                   alt={p.title}
                   width={1200}
                   height={600}
-                  sizes="(min-width: 640px) 300px, 90vw"
+                  loading="lazy"
                   className="aspect-[2/1] w-full border border-neutral-200 object-cover"
                 />
                 <span className="mt-2 block text-sm font-medium text-neutral-900 group-hover:underline">
