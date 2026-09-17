@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/home";
 import { BondTypeCard } from "@/components/bond-type/BondTypeCard";
+import { getBlogPosts } from "@/lib/content";
 
 export function meta(_: Route.MetaArgs) {
   return [
@@ -76,6 +77,8 @@ const projects = [
 ];
 
 export default function Home() {
+  const posts = getBlogPosts();
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-16 md:grid md:grid-cols-[200px_1fr] md:gap-16">
       <aside className="mb-12 md:mb-0">
@@ -133,6 +136,26 @@ export default function Home() {
                 <p className="text-sm leading-relaxed text-neutral-700 mt-2">
 I'm also a moderator at r/AskProgrammers (sort of chronically online on 4 reddit accounts)
         </p>
+
+        <h2 className="mb-4 mt-10 text-sm font-medium text-neutral-900">Blog</h2>
+        <ul className="flex flex-col divide-y divide-neutral-200">
+          {posts.map((p) => (
+            <li key={p.slug}>
+              <Link
+                to={`/blogs/${p.slug}`}
+                className="group flex items-baseline justify-between gap-4 py-2.5 text-sm"
+              >
+                <span className="text-neutral-900 group-hover:underline">
+                  {p.title}
+                </span>
+                <span className="shrink-0 text-xs text-neutral-400">{p.date}</span>
+              </Link>
+            </li>
+          ))}
+          {posts.length === 0 && (
+            <li className="py-2.5 text-sm text-neutral-500">No posts yet.</li>
+          )}
+        </ul>
 
         <h2 className="mb-4 mt-10 text-sm font-medium text-neutral-900">
           Open Source Projects
