@@ -145,7 +145,7 @@ I'm also a moderator at r/AskProgrammers (sort of chronically online on 4 reddit
                 to={`/blogs/${p.slug}`}
                 className="group flex items-baseline justify-between gap-4 py-2.5 text-sm"
               >
-                <span className="text-neutral-900 group-hover:underline">
+                <span className="text-neutral-900 bg-blue-100 hover:bg-blue-200/70 transition pl-2 rounded-md py-2 w-full group-hover:underline">
                   {p.title}
                 </span>
                 <span className="shrink-0 text-xs text-neutral-400">{p.date}</span>
@@ -156,7 +156,6 @@ I'm also a moderator at r/AskProgrammers (sort of chronically online on 4 reddit
             <li className="py-2.5 text-sm text-neutral-500">No posts yet.</li>
           )}
         </ul>
-
         <h2 className="mb-4 mt-10 text-sm font-medium text-neutral-900">
           Open Source Projects
         </h2>
@@ -187,29 +186,6 @@ I'm also a moderator at r/AskProgrammers (sort of chronically online on 4 reddit
                   {p.extra.label} →
                 </a>
               )}
-            </li>
-          ))}
-        </ul>
-
-        <ul className="mt-10 flex flex-col divide-y divide-neutral-200">
-          {entries.map((e) => (
-            <li key={e.title} className="py-4">
-              <a
-                href={e.href}
-                target="_blank"
-                rel="noopener"
-                className="group flex flex-col gap-0.5"
-              >
-                <span className="flex items-baseline justify-between gap-4">
-                  <span className="text-sm font-medium text-neutral-900 group-hover:underline">
-                    {e.title}
-                  </span>
-                  <span className="shrink-0 text-xs text-neutral-400">
-                    {e.meta}
-                  </span>
-                </span>
-                <span className="text-sm text-neutral-500">{e.note}</span>
-              </a>
             </li>
           ))}
         </ul>
